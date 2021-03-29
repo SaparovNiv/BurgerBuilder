@@ -1,21 +1,26 @@
 import classes from './BurgerIngredient.module.css';
-import React from 'react';
-import ingredients from './BurgerIngredientsConstants'
+import React, { Component } from 'react';
+import ingredients from './BurgerIngredientsConstants';
+import PropTypes from 'prop-types';
 
-const burgerIngredient = (props) => {
-    let ingredient = null;
-
-    if(props.type === ingredients.BREAD_TOP){
-        ingredients = (
-            <div className={classes[props.type]}>
-                <div className={classes.Seeds1}></div>
-                <div className={classes.Seeds2}></div>
-            </div>
-        );
-    }else{
-        ingredient = <div className={classes[props.type]}></div>;
+class BurgerIngredient extends Component {
+    render() {
+        let ingredient = null;
+        if (this.props.type === ingredients.BREAD_TOP) {
+            ingredient = (
+                <div className={classes[this.props.type]}>
+                    <div className={classes.Seeds1}></div>
+                    <div className={classes.Seeds2}></div>
+                </div>
+            );
+        } else {
+            ingredient = <div className={classes[this.props.type]}></div>;
+        }
+        return ingredient;
     }
-    return ingredient;
-};
+}
 
-export default burgerIngredient;
+BurgerIngredient.propTypes = {
+    type: PropTypes.string.isRequired
+};
+export default BurgerIngredient;
