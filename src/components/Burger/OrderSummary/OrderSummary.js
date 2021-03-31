@@ -5,7 +5,7 @@ import Button from '../../UI/Button/Button';
 const orderSummary = (props) => {
     const ingredientSummary = Object.keys(props.ingredients)
         .map(igKey => {
-            return <li key={igKey}>{igKey}: {props.ingredients[igKey]}</li>
+            return props.ingredients[igKey] > 0 ? <li key={igKey}>{igKey}: {props.ingredients[igKey]}</li> : null
         })
     return (
         <Aux>
@@ -14,6 +14,7 @@ const orderSummary = (props) => {
             <ul>
                 {ingredientSummary}
             </ul>
+            <p><strong>Total Price: {props.totalPrice.toFixed(2)}$</strong></p>
             <p>Continue to checkout</p>
             <Button btnType='Danger' click={props.cancelOrder}>Cancel</Button>
             <Button btnType='Success' click={props.makeOrder}>Continue</Button>
